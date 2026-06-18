@@ -151,7 +151,7 @@ If the script is the main module being run, it will execute the **`main`** funct
 
 ## **Building the Data Pipeline: Step-by-Step**
 
-### **1. Set Up Kafka Cluster**
+### 1. Set Up Kafka Cluster
 
 Start your Kafka cluster with the following commands:
 
@@ -160,7 +160,7 @@ docker network create docker_streaming
 docker-compose -f docker-compose.yml up -d
 ```
 
-### 2**. Create the topic for Kafka (**http://localhost:8888/)
+### 2 Create the topic for Kafka (**http://localhost:8888/)
 
 - Access the Kafka UI at http://localhost:8888/.
 - Observe the active cluster.
@@ -168,7 +168,7 @@ docker-compose -f docker-compose.yml up -d
 - Create a new topic named "names_topic".
 - Set the replication factor to 3.
 
-### 3**. Configure Airflow User**
+### 3 Configure Airflow User
 
 Create an Airflow user with admin privileges:
 
@@ -185,7 +185,7 @@ Use the provided script to access the Airflow bash and install required packages
 pip install -r ./requirements.txt
 ```
 
-### 5**. Validate DAGs**
+### 5 Validate DAGs
 
 Ensure there are no errors with your DAGs:
 
@@ -193,7 +193,7 @@ Ensure there are no errors with your DAGs:
 airflow dags list
 ```
 
-### 6**. Start Airflow Scheduler**
+### 6 Start Airflow Scheduler
 
 To initiate the DAG, run the scheduler:
 
@@ -201,11 +201,11 @@ To initiate the DAG, run the scheduler:
 airflow scheduler
 ```
 
-### 6**. Verify the data is uploaded to Kafka Cluster**
+### 7 Verify the data is uploaded to Kafka Cluster
 
 - Access the Kafka UI at http://localhost:8888/ and verify that the data is uploaded for the topic
 
-### 8**. Transfer Spark Script**
+### 8 Transfer Spark Script
 
 Copy your Spark script into the Docker container:
 
@@ -213,7 +213,7 @@ Copy your Spark script into the Docker container:
 docker cp spark_processing.py spark_master:/opt/bitnami/spark/
 ```
 
-### 9**. Initiate Spark Master & Download JARs**
+### 9 Initiate Spark Master & Download JARs
 
 Access Spark bash, navigate to the `jars` directory, and download essential JAR files. After downloading, submit the Spark job:
 
@@ -238,7 +238,7 @@ spark-submit \
 spark_processing.py
 ```
 
-### 10**. Verify Data on S3**
+### 10 Verify Data on S3
 
 After executing the steps, check your S3 bucket to ensure data has been uploaded
 
